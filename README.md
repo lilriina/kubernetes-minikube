@@ -236,17 +236,25 @@ kubectl expose deployment myservice --type=LoadBalancer --port=8080
 ```
 minikube service myservice --url
 ```
-`http://127.0.0.1:63428/`
+http://127.0.0.1:63428/
 
 Test in your web browser
 
 
 ## Creating version 2
 
-```docker build -t myservice:2 .```
-```docker images```
-```docker tag 100cc3d951db gimenezm/myservice:2```
-```docker push gimenezm/myservice:2```
+```
+docker build -t myservice:2 .
+```
+```
+docker images
+```
+```
+docker tag 100cc3d951db gimenezm/myservice:2
+```
+```
+docker push gimenezm/myservice:2
+```
 
 
 ## Rolling updates
@@ -321,12 +329,24 @@ kubectl get pods -n ingress-nginx
 
 Create a Deployment and expose it as a NodePort (not a loadbalancer).
 
-```kubectl scale --replicas=2 deployment/myservice```
-```kubectl get deployments```
-```kubectl get services```
-```kubectl delete service myservice```
-```kubectl expose deployment myservice --type=NodePort --port=8080```
-```minikube service myservice --url```
+```
+kubectl scale --replicas=2 deployment/myservice
+```
+```
+kubectl get deployments
+```
+```
+kubectl get services
+```
+```
+kubectl delete service myservice
+```
+```
+kubectl expose deployment myservice --type=NodePort --port=8080
+```
+```
+minikube service myservice --url
+```
 http://127.0.0.1:49678/
 
 Check if it works.
@@ -370,18 +390,40 @@ http://myservice.info/
 
 Create a second deployment and its service, then add a new route to the ingress.yml file.
 
-```docker build -t newservice .```
-```docker tag 14df09db94f5 gimenezm/myservice:3```
-```docker push gimenezm/myservice:3```
-```kubectl create deployment newservice --image=gimenezm/myservice:3```
-```kubectl scale --replicas=2 deployment/newservice```
-```kubectl expose deployment newservice --type=NodePort --port=8081```
-```minikube service newservice --url```
+```
+docker build -t newservice .
+```
+```
+docker tag 14df09db94f5 gimenezm/myservice:3
+```
+```
+docker push gimenezm/myservice:3
+```
+```
+kubectl create deployment newservice --image=gimenezm/myservice:3
+```
+```
+kubectl scale --replicas=2 deployment/newservice
+```
+```
+kubectl expose deployment newservice --type=NodePort --port=8081
+```
+```
+minikube service newservice --url
+```
 http://127.0.0.1:62347/
-```kubectl apply -f ingress.yml```
-```kubectl get ingress```
-```minikube addons enable ingress-dns```
-```minikube tunnel```
+```
+kubectl apply -f ingress.yml
+```
+```
+kubectl get ingress
+```
+```
+minikube addons enable ingress-dns
+```
+```
+minikube tunnel
+```
 
 ## Delete resources
 
